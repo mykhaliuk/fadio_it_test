@@ -69,7 +69,7 @@ function App() {
       </Flex>
       <Box w="80vw" mt={14}>
         <Text my={8}>
-          This is implementation of the{' '}
+          This is an implementation of the{' '}
           <code>Product Engineering Technical Test</code>.
         </Text>
         <Text my={8}>
