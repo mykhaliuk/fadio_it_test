@@ -1,16 +1,9 @@
 import { axisBottom, max, min, range, scaleBand, scaleTime, select } from 'd3';
 import React, { RefObject, useEffect, useRef } from 'react';
 import { normalizeData, NormalizedTrial, Trial } from '../utils/normalize-data';
-// import * as dayjs from 'dayjs'
-
-declare global {
-  interface Window {
-    renderClinicalTrials: (data: Trial[]) => void;
-  }
-}
 
 type TimelineProps = {
-  data: NormalizedTrial[];
+  data: Trial[];
   height?: number;
   width?: number;
   children?: never;
@@ -27,10 +20,6 @@ export const Timeline: React.FC<TimelineProps> = ({
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    function renderClinicalTrials(data: Trial[]) {
-      renderChart(svgRef, normalizeData(data), padding, height, width);
-    }
-    window.renderClinicalTrials = renderClinicalTrials;
     renderChart(svgRef, data, padding, height, width);
   }, [height, width, padding, data]);
 
@@ -39,7 +28,7 @@ export const Timeline: React.FC<TimelineProps> = ({
 
 function renderChart(
   svgRef: RefObject<SVGSVGElement>,
-  data: NormalizedTrial[],
+  data: Trial[],
   padding = 50,
   height = 350,
   width = 900,
@@ -47,7 +36,7 @@ function renderChart(
   const P = padding;
   const H = height;
   const W = width;
-  const trials = data;
+  const trials: NormalizedTrial[] = normalizeData(data);
 
   const minDate = min(trials, t => t.start) ?? Date.now();
   const maxDate = max(trials, t => t.end) ?? Date.now();
@@ -104,6 +93,4 @@ function renderChart(
     .attr('x', '1rem')
     .text(t => t.title)
     .style('font-size', 'max(1vw, .8rem)');
-  // .style('opacity', 0)
-  // .style('pointer-events', 'none');
 }
