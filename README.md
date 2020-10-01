@@ -1,4 +1,7 @@
-# Product Engineering Technical Test 
+# Product Engineering Technical Test
+
+ To start make `yarn && yarn start`
+--- 
 
 This test is intended to give us a sense of your coding skills.
 

@@ -20,7 +20,6 @@
     "react-icons": "^3.11.0",
     "react-scripts": "3.4.3",
     "react-syntax-highlighter": "^13.5.3",
-    "resize-observer-polyfill": "^1.5.1",
     "typescript": "^4.0.3",
     "use-resize-observer": "^6.1.0"
   },
